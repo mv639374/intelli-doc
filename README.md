@@ -22,12 +22,12 @@ Researchers, students, and professionals spend countless hours manually searchin
 * **PDF Processing:** `pypdf`
 * **Deployment:** **Docker**
 
-  ### **5. Setup the Application**
-  * Make a .env file in the root project folder and paste the `OPENAI_API_KEY` in it.
-  * Create and activate virtual enviroment: `python -m venv venv && source venv/bin/activate`
-  * Install the dependencies: `pip install -r requirements.txt`
+### **5. Setup the Application**
+* Make a .env file in the root project folder and paste the `OPENAI_API_KEY` in it.
+* Create and activate virtual enviroment: `python -m venv venv && source venv/bin/activate`
+* Install the dependencies: `pip install -r requirements.txt`
 
-### **5. Run the Application**
+### **6. Run the Application**
 
 * **Docker:** `docker-compose up --build`
 
