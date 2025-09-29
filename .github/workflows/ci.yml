@@ -1,0 +1,48 @@
+# .github/workflows/ci.yml
+
+# The name of our workflow. This will be displayed on the GitHub Actions tab.
+name: CI Pipeline
+
+# This section defines the trigger for the workflow.
+on:
+  # We want this workflow to run every time code is pushed to the 'main' branch.
+  push:
+    branches: [ "main" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel.
+jobs:
+  # We have a single job called "build-and-test".
+  build-and-test:
+    # This job will run on a virtual machine hosted by GitHub using the latest version of Ubuntu.
+    runs-on: ubuntu-latest
+
+    # 'steps' are the sequence of tasks that will be executed as part of the job.
+    steps:
+      # Step 1: Checks out your repository's code so the job can access it.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Sets up a specific version of Python on the runner.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Step 3: Installs project dependencies from requirements.txt.
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      # Step 4: Lints the code with Ruff (a fast Python linter) to check for style issues.
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff check . --output-format=github
+      
+      # Step 5: Builds the Docker image to verify the Dockerfile is correct and working.
+      # This does not push the image anywhere; it's just a build test.
+      - name: Build Docker Image
+        run: docker build -t intelli-doc-api .
