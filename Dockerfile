@@ -17,8 +17,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expost port 8000 to allow communication with the app inside the container
-EXPOSE 8000
+EXPOSE 8000  
+# (this is for documentation and local use, Cloud Run ignores it)
 
 # Define the command to run the application when the container starts
 # We use "--host 0.0.0.0" to make the server accessible from outside the container
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Use the "shell form" to allow environment variable substitution.
+CMD uvicorn app.main:app --host 0.0.0.0 --port $PORT

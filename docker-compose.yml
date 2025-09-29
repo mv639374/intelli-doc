@@ -13,6 +13,7 @@ services:
       - ./vector_store:/app/vector_store
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PORT=8000 # We are providing the PORT variable for local runs
 
 
 
