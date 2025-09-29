@@ -1,0 +1,37 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: intelli-doc-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./vector_store:/app/vector_store
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+
+
+# Key parts of this YAML file explained:
+
+# services:: Defines the different containers that make up your application. 
+# We only have one, called api.
+
+# build: .: Tells Compose to build the image from the Dockerfile in the current directory.
+
+# ports: - "8000:8000": Maps port 8000 on your machine to port 8000 in the container.
+
+# volumes:: This is critical for data persistence. It links the data and vector_store 
+# folders on your computer to the corresponding folders inside the container. 
+# This means even if you stop and remove the container, 
+# your uploaded PDFs and your vector database will not be lost.
+
+# environment:: This securely passes your OPENAI_API_KEY from your local .env file into the 
+# container as an environment variable, so your code can access it without it being hardcoded.
+
+
+# docker-compose up --build

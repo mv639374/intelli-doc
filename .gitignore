@@ -1,0 +1,15 @@
+# .gitignore
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Data and Vector Store
+data/
+vector_store/
