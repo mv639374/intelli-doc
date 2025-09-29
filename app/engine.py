@@ -105,7 +105,7 @@ class RagEngine:
         docs = loader.load_and_split(self.text_splitter)
         print(f"Created {len(docs)} document chunks.")
         self.vector_store.add_documents(docs)
-        print(f"Document added to vector store.")
+        print("Document added to vector store.")
 
     def ask_question(self, question: str, chat_history: List[BaseMessage] = []):
         """
