@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expost port 8000 to allow communication with the app inside the container
-EXPOSE 8000  
+# EXPOSE 8000  
 # (this is for documentation and local use, Cloud Run ignores it)
 
 # Define the command to run the application when the container starts
